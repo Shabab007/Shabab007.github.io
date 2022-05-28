@@ -1,0 +1,10 @@
+I"î<h1 class="no_toc" id="creating-flowcode">Creating Flowcode</h1>
+
+<p>Inorder to create Flowcode,</p>
+<ol>
+  <li>We need to generate StudioConfigId.To get customized designed flowcode.</li>
+  <li>We need to generate batchId .To generate BatchId , We have use that Studioconfig Id. batchId is needed to keep track of the flowcode anayltics and thats how a flowcode is created.</li>
+  <li>We need to call the generator api with that generated studioConfigId to get the flowcode Image.</li>
+</ol>
+
+:ET

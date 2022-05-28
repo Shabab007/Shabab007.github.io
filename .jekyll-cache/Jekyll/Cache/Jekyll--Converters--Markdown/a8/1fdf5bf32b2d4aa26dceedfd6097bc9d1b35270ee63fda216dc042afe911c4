@@ -1,0 +1,118 @@
+I"C.<h1 class="no_toc" id="importing-types-and-objects">Importing types and objects</h1>
+
+<p>You need import types and objects inorder to create flocodeGenerationOptions Object.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="p">{</span>
+    <span class="nx">FcShape</span><span class="p">,</span>
+    <span class="nx">FcText</span><span class="p">,</span>
+    <span class="nx">FcGeneratorPositionElementOptions</span><span class="p">,</span>
+    <span class="nx">FcPositionProperty</span><span class="p">,</span>
+    <span class="nx">FcPosition</span><span class="p">,</span>
+    <span class="nx">FcColorBlack</span><span class="p">,</span>
+    <span class="nx">FcGeneratorOptions</span><span class="p">,</span>
+
+ <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">@flowcode/flowcode-generator-types</span><span class="dl">'</span>
+
+
+ <span class="kd">const</span> <span class="nx">tvCodeSizeOptions</span> <span class="o">=</span> <span class="p">{</span>
+ <span class="na">outerShapeOutlineSize</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+ <span class="na">innerShapeWidth</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span>
+ <span class="na">outerShapeWidth</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span>
+ <span class="na">insetBorderPadding</span><span class="p">:</span> <span class="mf">0.11</span>
+<span class="p">}</span>
+<span class="kd">const</span> <span class="nx">logoEyesStyle</span><span class="p">:</span> <span class="nx">FcGeneratorPositionElementOptions</span> <span class="o">=</span> <span class="p">{</span>
+ <span class="p">...</span><span class="nx">tvCodeSizeOptions</span><span class="p">,</span>
+ <span class="na">outerShape</span><span class="p">:</span> <span class="nx">FcShape</span><span class="p">.</span><span class="nx">LOGO</span><span class="p">,</span>
+ <span class="na">innerShape</span><span class="p">:</span> <span class="nx">FcShape</span><span class="p">.</span><span class="nx">SQUARE</span><span class="p">,</span>
+ <span class="na">text</span><span class="p">:</span> <span class="p">{</span>
+   <span class="na">text</span><span class="p">:</span> <span class="dl">'</span><span class="s1">FLOWCODE</span><span class="dl">'</span><span class="p">,</span>
+   <span class="na">font</span><span class="p">:</span> <span class="dl">'</span><span class="s1">inter_black</span><span class="dl">'</span><span class="p">,</span>
+   <span class="na">fontColor</span><span class="p">:</span> <span class="dl">'</span><span class="s1">#000000</span><span class="dl">'</span><span class="p">,</span>
+   <span class="na">fontSize</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span>
+   <span class="na">position</span><span class="p">:</span> <span class="p">{</span> <span class="na">property</span><span class="p">:</span> <span class="nx">FcPositionProperty</span><span class="p">.</span><span class="nx">DEFAULT</span><span class="p">,</span> <span class="na">offsetPercentage</span><span class="p">:</span> <span class="mi">0</span> <span class="p">}</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">const</span> <span class="nx">otherEyesStyle</span><span class="p">:</span> <span class="nx">FcGeneratorPositionElementOptions</span> <span class="o">=</span> <span class="p">{</span>
+ <span class="p">...</span><span class="nx">tvCodeSizeOptions</span><span class="p">,</span>
+ <span class="na">outerShape</span><span class="p">:</span> <span class="nx">FcShape</span><span class="p">.</span><span class="nx">SQUARE</span><span class="p">,</span>
+ <span class="na">innerShape</span><span class="p">:</span> <span class="nx">FcShape</span><span class="p">.</span><span class="nx">SQUARE</span>
+<span class="p">}</span>
+<span class="kd">const</span> <span class="nx">tvCodeOptions</span><span class="p">:</span> <span class="nx">FcGeneratorOptions</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">data</span><span class="p">:</span><span class="dl">"</span><span class="s2">https://flowcode.com/p/</span><span class="dl">"</span><span class="p">,</span>
+ <span class="na">isTVCode</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+ <span class="na">containerBackgroundInsetExtend</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+ <span class="na">qrdensity</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+ <span class="na">containerBorderSize</span><span class="p">:</span> <span class="mf">7.5</span><span class="p">,</span>
+ <span class="na">containerBorderInsetEyes</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+ <span class="na">dataGridPercentageSize</span><span class="p">:</span> <span class="mi">72</span><span class="p">,</span>
+ <span class="na">radiusMask</span><span class="p">:</span> <span class="mi">78</span><span class="p">,</span>
+ <span class="na">containerRimPatternSize</span><span class="p">:</span> <span class="mi">85</span><span class="p">,</span>
+ <span class="na">containerEmptySpaceSize</span><span class="p">:</span> <span class="mi">6</span><span class="p">,</span>
+ <span class="na">containerText</span><span class="p">:</span> <span class="p">[</span>
+   <span class="k">new</span> <span class="nx">FcText</span><span class="p">(</span>
+     <span class="dl">'</span><span class="s1">PRIVACY.FLOWCODE.COM</span><span class="dl">'</span><span class="p">,</span>
+     <span class="dl">'</span><span class="s1">inter_medium</span><span class="dl">'</span><span class="p">,</span>
+     <span class="mi">7</span><span class="p">,</span>
+     <span class="nx">FcColorBlack</span><span class="p">,</span>
+     <span class="k">new</span> <span class="nx">FcPosition</span><span class="p">(</span><span class="nx">FcPositionProperty</span><span class="p">.</span><span class="nx">BOTTOM</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+   <span class="p">)</span>
+ <span class="p">]</span>
+<span class="p">}</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">TV_CODE_FLOWCODE_OPTIONS</span><span class="p">:</span> <span class="nx">FcGeneratorOptions</span> <span class="o">=</span> <span class="p">{</span>
+ <span class="p">...</span><span class="nx">tvCodeOptions</span><span class="p">,</span>
+ <span class="na">qrrotate</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+ <span class="na">positionElementTopRight</span><span class="p">:</span> <span class="nx">otherEyesStyle</span><span class="p">,</span>
+ <span class="na">positionElementBottomLeft</span><span class="p">:</span> <span class="nx">logoEyesStyle</span><span class="p">,</span>
+ <span class="na">positionElementTopLeft</span><span class="p">:</span> <span class="nx">otherEyesStyle</span>
+<span class="p">}</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">TV_CODE_FLOWCODE_OPTIONS_ROTATED_EYES</span><span class="p">:</span> <span class="nx">FcGeneratorOptions</span> <span class="o">=</span> <span class="p">{</span>
+ <span class="p">...</span><span class="nx">tvCodeOptions</span><span class="p">,</span>
+ <span class="na">qrrotate</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+ <span class="na">positionElementTopRight</span><span class="p">:</span> <span class="nx">logoEyesStyle</span><span class="p">,</span>
+ <span class="na">positionElementBottomLeft</span><span class="p">:</span> <span class="nx">otherEyesStyle</span><span class="p">,</span>
+ <span class="na">positionElementTopLeft</span><span class="p">:</span> <span class="nx">otherEyesStyle</span>
+<span class="p">}</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">getChangedColorTvCode</span> <span class="o">=</span><span class="p">(</span><span class="nx">color</span><span class="p">:</span><span class="nx">string</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="nx">color</span><span class="p">){</span>
+    <span class="k">return</span><span class="p">{</span>
+      <span class="p">...</span><span class="nx">TV_CODE_FLOWCODE_OPTIONS</span><span class="p">,</span>
+      <span class="na">containerBorderColor</span><span class="p">:</span><span class="nx">color</span><span class="p">,</span>
+      <span class="na">containerOuterPatternColor</span><span class="p">:</span><span class="nx">color</span><span class="p">,</span>
+      <span class="na">gridModuleColor</span><span class="p">:</span><span class="nx">color</span><span class="p">,</span>
+      <span class="na">positionElementTopLeft</span><span class="p">:{</span>
+       <span class="p">...</span><span class="nx">TV_CODE_FLOWCODE_OPTIONS</span><span class="p">.</span><span class="nx">positionElementTopLeft</span><span class="p">,</span>
+       <span class="na">innerShapeColor</span><span class="p">:</span><span class="nx">color</span><span class="p">,</span>
+       <span class="na">outerShapeColor</span><span class="p">:</span><span class="nx">color</span><span class="p">,</span>
+      <span class="p">},</span>
+      <span class="na">positionElementTopRight</span><span class="p">:{</span>
+        <span class="p">...</span><span class="nx">TV_CODE_FLOWCODE_OPTIONS</span><span class="p">.</span><span class="nx">positionElementTopLeft</span><span class="p">,</span>
+        <span class="na">innerShapeColor</span><span class="p">:</span><span class="nx">color</span><span class="p">,</span>
+        <span class="na">outerShapeColor</span><span class="p">:</span><span class="nx">color</span><span class="p">,</span>
+       <span class="p">},</span>
+       <span class="na">positionElementBottomLeft</span><span class="p">:{</span>
+        <span class="p">...</span><span class="nx">TV_CODE_FLOWCODE_OPTIONS</span><span class="p">.</span><span class="nx">positionElementTopLeft</span><span class="p">,</span>
+        <span class="na">innerShapeColor</span><span class="p">:</span><span class="nx">color</span><span class="p">,</span>
+        <span class="na">outerShapeColor</span><span class="p">:</span><span class="nx">color</span><span class="p">,</span>
+       <span class="p">},</span>
+       <span class="na">containerText</span><span class="p">:</span> <span class="p">[</span>
+        <span class="k">new</span> <span class="nx">FcText</span><span class="p">(</span>
+          <span class="dl">'</span><span class="s1">PRIVACY.FLOWCODE.COM</span><span class="dl">'</span><span class="p">,</span>
+          <span class="dl">'</span><span class="s1">inter_medium</span><span class="dl">'</span><span class="p">,</span>
+          <span class="mi">7</span><span class="p">,</span>
+          <span class="nx">color</span><span class="p">,</span>
+          <span class="k">new</span> <span class="nx">FcPosition</span><span class="p">(</span><span class="nx">FcPositionProperty</span><span class="p">.</span><span class="nx">BOTTOM</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="p">)</span>
+      <span class="p">]</span>
+
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <ul>
+    <li>These are the deafult options for flowcode Options. The main two objects are <code class="language-plaintext highlighter-rouge">TV_CODE_FLOWCODE_OPTIONS</code> and <code class="language-plaintext highlighter-rouge">TV_CODE_FLOWCODE_OPTIONS_ROTATED_EYES</code>.</li>
+  </ul>
+</blockquote>
+
+:ET

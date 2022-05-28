@@ -1,0 +1,51 @@
+I"�<h1 class="no_toc" id="create-batchid">Create BatchId</h1>
+
+<p>After creating the studioConfigId for designed flowcode , we need to create batchid using that studioConfigId to create and register the flowcode at Flowcode.com</p>
+
+<p>Creating batchId is similar process of creating studioConfigId because both are graphql api just parameters are different.</p>
+
+<p>The parameters are given bellow</p>
+
+<ul>
+  <li>active: Boolean = true</li>
+  <li>anonymousSessionId: UUID</li>
+  <li>assetLabels: [String]</li>
+  <li>campaignName: CombinedGeneratorCampaigns</li>
+  <li>creationSource: CreationSource</li>
+  <li>isCollectible: Boolean = false</li>
+  <li>isStaticCode: Boolean = false</li>
+  <li>nickname: String = “”</li>
+  <li>partialIds: [UUID] = []</li>
+  <li>redirectDomain: String</li>
+  <li>redirectType: RedirectType!</li>
+  <li>studioConfigId: UUID</li>
+  <li>url: String!</li>
+  <li>userId: ID</li>
+</ul>
+
+<p>A snippet of the query and response are given bellow.</p>
+
+<div class="language-graphql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">### createBatch request</span><span class="w">
+</span><span class="k">mutation</span><span class="w"> </span><span class="n">createBatch</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="n">createBatch</span><span class="p">(</span><span class="n">studioConfigId</span><span class="p">:</span><span class="w"> </span><span class="s2">"ca947a21-9a81-4fa8-9b60-dd47c66e695c"</span><span class="p">,</span><span class="w"> </span><span class="n">redirectType</span><span class="p">:</span><span class="w"> </span><span class="n">URL</span><span class="p">,</span><span class="w"> </span><span class="n">url</span><span class="p">:</span><span class="w"> </span><span class="s2">"test.com"</span><span class="p">,</span><span class="w"> </span><span class="n">creationSource</span><span class="p">:</span><span class="w"> </span><span class="n">VIDEO_TOOL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="n">ok</span><span class="w">
+    </span><span class="n">batch</span><span class="p">{</span><span class="w">
+      </span><span class="n">id</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="c">### result</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="err">"</span><span class="n">data</span><span class="err">":</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="err">"</span><span class="n">createBatch</span><span class="err">":</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="err">"</span><span class="n">ok</span><span class="err">":</span><span class="w"> </span><span class="n">true</span><span class="p">,</span><span class="w">
+      </span><span class="err">"</span><span class="n">batch</span><span class="err">":</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="err">"</span><span class="n">id</span><span class="err">":</span><span class="w"> </span><span class="err">"</span><span class="n">QmF0Y2hEamFuZ29UeXBlOmVSWHFH</span><span class="err">"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<p>Use This batch Id the identify the flowcode in flowcode analytics page.
+we can see the how many scans are made, when it is created, which user etc in tha analytics</p>
+:ET

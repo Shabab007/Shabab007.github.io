@@ -1,0 +1,127 @@
+I"Ã0<h1 id="making-flowcodeoptions-object">Making FlowcodeOptions object</h1>
+
+<p>For making the flowcode options object, it will depende on the parameter of the user . for expample user can select different pattern, colors, centerImgae. etc .
+depending on the user Input the value of the deafult objects will change and create a new object . the code is given in the following.</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">tvFlowcodeOptions</span> <span class="o">=</span> <span class="nx">useMemo</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">isInverted</span><span class="o">=</span><span class="kc">false</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="nx">rotateEyes</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="nx">backgroundColor</span><span class="o">=</span><span class="nx">selectedColor</span><span class="p">?.</span><span class="nx">code</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="nx">gridModuleShape</span><span class="o">=</span> <span class="o">+</span><span class="nx">selectedPattern</span><span class="p">?.</span><span class="nx">id</span>
+  <span class="kd">const</span> <span class="nx">invertedColorOpts</span> <span class="o">=</span> <span class="nx">getInvertedColorTvCodeProps</span><span class="p">(</span><span class="nx">rotateEyes</span><span class="p">,</span> <span class="nx">backgroundColor</span> <span class="o">||</span> <span class="dl">''</span><span class="p">)</span>
+  <span class="kd">const</span> <span class="nx">changedColors</span><span class="o">=</span><span class="nx">getChangedColorTvCode</span><span class="p">(</span><span class="nx">backgroundColor</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">standardOpts</span> <span class="o">=</span> <span class="nx">rotateEyes</span>
+    <span class="p">?</span> <span class="nx">TV_CODE_FLOWCODE_OPTIONS</span>
+    <span class="p">:</span> <span class="nx">TV_CODE_FLOWCODE_OPTIONS_ROTATED_EYES</span>
+  <span class="c1">// TODO = look into better way to distinguish between different shapes</span>
+  <span class="kd">const</span> <span class="nx">customShape</span> <span class="o">=</span> <span class="o">!</span><span class="nx">rotateEyes</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">heart</span><span class="dl">'</span> <span class="p">:</span> <span class="kc">undefined</span>
+  <span class="kd">const</span> <span class="nx">gridModuleSize</span> <span class="o">=</span> <span class="nx">getGridModuleSizeForTVCode</span><span class="p">(</span><span class="nx">gridModuleShape</span> <span class="o">||</span> <span class="nx">customShape</span><span class="p">)</span>
+
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="p">...(</span><span class="nx">isInverted</span> <span class="p">?</span> <span class="nx">invertedColorOpts</span> <span class="p">:</span> <span class="nx">changedColors</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">?</span> <span class="nx">changedColors</span><span class="p">:</span> <span class="nx">standardOpts</span><span class="p">),</span>
+    <span class="na">gridModuleRandomSizes</span><span class="p">:</span> <span class="nx">gridModuleSize</span><span class="p">,</span>
+    <span class="na">containerOuterPatternRandomSizes</span><span class="p">:</span> <span class="nx">gridModuleSize</span>
+  <span class="p">}</span>
+<span class="p">},</span> <span class="p">[</span><span class="nx">selectedPattern</span><span class="p">,</span> <span class="nx">selectedColor</span><span class="p">])</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>This tvFlowcodeOptions object will change depending on user input pattern and color</p>
+</blockquote>
+
+<p>to Support thesese changes there are few function you need to make to adjust the value that need to change</p>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">getChangedColorTvCode</span> <span class="o">=</span><span class="p">(</span><span class="nx">color</span><span class="p">:</span><span class="nx">string</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+  <span class="k">if</span><span class="p">(</span><span class="nx">color</span><span class="p">){</span>
+    <span class="k">return</span><span class="p">{</span>
+      <span class="p">...</span><span class="nx">TV_CODE_FLOWCODE_OPTIONS</span><span class="p">,</span>
+      <span class="na">containerBorderColor</span><span class="p">:</span><span class="nx">color</span><span class="p">,</span>
+      <span class="na">containerOuterPatternColor</span><span class="p">:</span><span class="nx">color</span><span class="p">,</span>
+      <span class="na">gridModuleColor</span><span class="p">:</span><span class="nx">color</span><span class="p">,</span>
+      <span class="na">positionElementTopLeft</span><span class="p">:{</span>
+       <span class="p">...</span><span class="nx">TV_CODE_FLOWCODE_OPTIONS</span><span class="p">.</span><span class="nx">positionElementTopLeft</span><span class="p">,</span>
+       <span class="na">innerShapeColor</span><span class="p">:</span><span class="nx">color</span><span class="p">,</span>
+       <span class="na">outerShapeColor</span><span class="p">:</span><span class="nx">color</span><span class="p">,</span>
+      <span class="p">},</span>
+      <span class="na">positionElementTopRight</span><span class="p">:{</span>
+        <span class="p">...</span><span class="nx">TV_CODE_FLOWCODE_OPTIONS</span><span class="p">.</span><span class="nx">positionElementTopLeft</span><span class="p">,</span>
+        <span class="na">innerShapeColor</span><span class="p">:</span><span class="nx">color</span><span class="p">,</span>
+        <span class="na">outerShapeColor</span><span class="p">:</span><span class="nx">color</span><span class="p">,</span>
+       <span class="p">},</span>
+       <span class="na">positionElementBottomLeft</span><span class="p">:{</span>
+        <span class="p">...</span><span class="nx">TV_CODE_FLOWCODE_OPTIONS</span><span class="p">.</span><span class="nx">positionElementTopLeft</span><span class="p">,</span>
+        <span class="na">innerShapeColor</span><span class="p">:</span><span class="nx">color</span><span class="p">,</span>
+        <span class="na">outerShapeColor</span><span class="p">:</span><span class="nx">color</span><span class="p">,</span>
+       <span class="p">},</span>
+       <span class="na">containerText</span><span class="p">:</span> <span class="p">[</span>
+        <span class="k">new</span> <span class="nx">FcText</span><span class="p">(</span>
+          <span class="dl">'</span><span class="s1">PRIVACY.FLOWCODE.COM</span><span class="dl">'</span><span class="p">,</span>
+          <span class="dl">'</span><span class="s1">inter_medium</span><span class="dl">'</span><span class="p">,</span>
+          <span class="mi">7</span><span class="p">,</span>
+          <span class="nx">color</span><span class="p">,</span>
+          <span class="k">new</span> <span class="nx">FcPosition</span><span class="p">(</span><span class="nx">FcPositionProperty</span><span class="p">.</span><span class="nx">BOTTOM</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="p">)</span>
+      <span class="p">]</span>
+
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">getInvertedColorTvCodeProps</span> <span class="o">=</span> <span class="p">(</span>
+ <span class="nx">isRotated</span><span class="p">:</span> <span class="nx">boolean</span><span class="p">,</span>
+ <span class="nx">backgroundColor</span><span class="p">:</span> <span class="nx">string</span>
+<span class="p">):</span> <span class="nx">FcGeneratorOptions</span> <span class="o">=&gt;</span> <span class="p">{</span>
+ <span class="k">if</span> <span class="p">(</span><span class="nx">isRotated</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="p">{</span>
+     <span class="p">...</span><span class="nx">TV_CODE_FLOWCODE_OPTIONS_ROTATED_EYES</span><span class="p">,</span>
+     <span class="na">positionElementTopRight</span><span class="p">:</span> <span class="p">{</span>
+       <span class="p">...</span><span class="nx">logoEyesStyle</span><span class="p">,</span>
+       <span class="nx">backgroundColor</span>
+     <span class="p">},</span>
+     <span class="na">positionElementTopLeft</span><span class="p">:</span> <span class="p">{</span>
+       <span class="p">...</span><span class="nx">otherEyesStyle</span><span class="p">,</span>
+       <span class="nx">backgroundColor</span>
+     <span class="p">},</span>
+     <span class="na">positionElementBottomLeft</span><span class="p">:</span> <span class="p">{</span>
+       <span class="p">...</span><span class="nx">otherEyesStyle</span><span class="p">,</span>
+       <span class="nx">backgroundColor</span>
+     <span class="p">}</span>
+   <span class="p">}</span>
+ <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="p">{</span>
+     <span class="p">...</span><span class="nx">TV_CODE_FLOWCODE_OPTIONS</span><span class="p">,</span>
+     <span class="na">positionElementTopRight</span><span class="p">:</span> <span class="p">{</span>
+       <span class="p">...</span><span class="nx">otherEyesStyle</span><span class="p">,</span>
+       <span class="nx">backgroundColor</span>
+     <span class="p">},</span>
+     <span class="na">positionElementTopLeft</span><span class="p">:</span> <span class="p">{</span>
+       <span class="p">...</span><span class="nx">otherEyesStyle</span><span class="p">,</span>
+       <span class="nx">backgroundColor</span>
+     <span class="p">},</span>
+     <span class="na">positionElementBottomLeft</span><span class="p">:</span> <span class="p">{</span>
+       <span class="p">...</span><span class="nx">logoEyesStyle</span><span class="p">,</span>
+       <span class="nx">backgroundColor</span>
+     <span class="p">}</span>  
+   <span class="p">}</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">getGridModuleSizeForTVCode</span> <span class="o">=</span> <span class="p">(</span><span class="nx">shape</span><span class="p">?:</span> <span class="nx">FcShape</span> <span class="o">|</span> <span class="dl">'</span><span class="s1">heart</span><span class="dl">'</span><span class="p">):</span> <span class="nx">string</span> <span class="o">=&gt;</span> <span class="p">{</span>
+ <span class="k">switch</span> <span class="p">(</span><span class="nx">shape</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">case</span> <span class="nx">FcShape</span><span class="p">.</span><span class="na">SQUARE</span><span class="p">:</span>
+     <span class="k">return</span> <span class="dl">'</span><span class="s1">80</span><span class="dl">'</span>
+   <span class="k">case</span> <span class="nx">FcShape</span><span class="p">.</span><span class="na">SHAGGY</span><span class="p">:</span>
+     <span class="k">return</span> <span class="dl">'</span><span class="s1">101</span><span class="dl">'</span>
+   <span class="k">case</span> <span class="dl">'</span><span class="s1">heart</span><span class="dl">'</span><span class="p">:</span>
+   <span class="k">case</span> <span class="nx">FcShape</span><span class="p">.</span><span class="na">CIRCLE</span><span class="p">:</span>
+     <span class="k">return</span> <span class="dl">'</span><span class="s1">95</span><span class="dl">'</span>
+   <span class="na">default</span><span class="p">:</span>
+     <span class="k">return</span> <span class="dl">'</span><span class="s1">125</span><span class="dl">'</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <ul>
+    <li>You need make you own funtions and changing parameters if needed.</li>
+  </ul>
+</blockquote>
+:ET

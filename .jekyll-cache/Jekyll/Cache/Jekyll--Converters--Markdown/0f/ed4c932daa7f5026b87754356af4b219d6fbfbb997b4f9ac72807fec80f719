@@ -1,0 +1,9 @@
+I"8<h1 id="previewing-flowcode">Previewing flowcode</h1>
+
+<p>To Preview the flowcode after the input is taken from the user , the above object need to pass in the url to get the generated flowcode preview</p>
+
+<p>For previewing the flowcode, the Url is <code class="language-plaintext highlighter-rouge">https://stg-generator.dtxcloud.com/v1/flowcode?opts=${encodeURIComponent(JSON.stringify(tvFlowcodeOptions))}</code> thats for <code class="language-plaintext highlighter-rouge">Stagging</code> and correspondingly
+<code class="language-plaintext highlighter-rouge">https://generator.dtxcloud.com/v1/flowcode?opts=${encodeURIComponent(JSON.stringify(tvFlowcodeOptions))}</code>for <code class="language-plaintext highlighter-rouge">Production</code> environment</p>
+
+<p>You need to make http call to make these requests.</p>
+:ET

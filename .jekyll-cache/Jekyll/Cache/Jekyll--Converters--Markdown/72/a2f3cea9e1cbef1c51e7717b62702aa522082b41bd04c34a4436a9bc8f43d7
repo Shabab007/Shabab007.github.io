@@ -1,0 +1,11 @@
+I"Ù<h1 id="finishing-up-the-process">Finishing up the process.</h1>
+
+<p>After creating the studioConfig Id and batch Id , we need to get the flowcode image to use it but this the the generator api and the parameter will be diffrent.</p>
+
+<p>we need to call <code class="language-plaintext highlighter-rouge">https://stg-generator.flowcode.com/v1/flowcode?</code> api and add <code class="language-plaintext highlighter-rouge">&amp;data=(encodedUriComponent(flowcodeUrl))</code> and <code class="language-plaintext highlighter-rouge">&amp;studio_config_id=studioConfigId</code>
+to get desired image with desired flowcode url.</p>
+
+<blockquote>
+  <p>You need to adjust those logics according to your code structure.</p>
+</blockquote>
+:ET

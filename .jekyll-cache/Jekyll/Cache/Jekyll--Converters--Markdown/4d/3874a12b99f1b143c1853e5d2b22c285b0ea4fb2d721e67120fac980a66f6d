@@ -1,0 +1,49 @@
+I"­	<!-- # Focus on writing good documentation.
+{: .fs-9 } -->
+
+<h1 class="fs-9" id="getting-started">Getting Started</h1>
+
+<p>Welcome! to get started for Flowcode Generation, You need to install some packages first.</p>
+
+<p>After that, you need to create environmental varible to access the package credential for the <code class="language-plaintext highlighter-rouge">@flowcode/flowcode-generator-types</code> private package.</p>
+
+<h3 id="installation-of-the-packages">Installation of the packages</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>yarn add <span class="s2">"@flowcode/flowcode-generator-types"</span>: <span class="s2">"1.1.3"</span>
+
+yarn add random-seed
+</code></pre></div></div>
+
+<h3 id="setting-up-envirnment-variables-for-accessing-the-private-package">Setting up envirnment Variables for accessing the private package</h3>
+
+<p>Firstly, you need to add these follwing lines in .npmrc file.
+These lines includes environment varibles for accessing the private package credentials.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>always-auth<span class="o">=</span><span class="nb">true</span>
+@dtx-company:registry<span class="o">=</span>https://npm.pkg.github.com
+@flowcode:registry<span class="o">=</span>https://flowcode.jfrog.io/artifactory/api/npm/fc-npm/
+//flowcode.jfrog.io/artifactory/api/npm/fc-npm/:_password<span class="o">=</span><span class="k">${</span><span class="nv">JFROG_FC_NPM_PASSWORD_B64</span><span class="k">}</span>
+//flowcode.jfrog.io/artifactory/api/npm/fc-npm/:username<span class="o">=</span><span class="k">${</span><span class="nv">JFROG_FC_NPM_USERNAME</span><span class="k">}</span>
+
+</code></pre></div></div>
+
+<p>Now you need to set these environment varibales <code class="language-plaintext highlighter-rouge">JFROG_FC_NPM_USERNAME</code> and <code class="language-plaintext highlighter-rouge">JFROG_FC_NPM_PASSWORD_B64</code> in you local machine.</p>
+
+<blockquote>
+  <ul>
+    <li>See on google that how to setup environment varibles in your local machine (Mac/Linux/windows).</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>Ask Flowcode team for the values of these variables.</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <ul>
+    <li>If you are using <code class="language-plaintext highlighter-rouge">Docker</code>, You need to check how to set environment varibales in Docker.</li>
+  </ul>
+</blockquote>
+:ET
